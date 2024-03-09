@@ -6,6 +6,7 @@ public class Lesson
 {
     public Guid Id { get; set; }
     public TimeSpan Time { get; set; }
+    public List<DayOfWeek> Days { get; set; }
     public Teacher Teacher { get; set; }
     public DateTimeOffset Created { get; set; }
     public DateTimeOffset Updated { get; set; }
