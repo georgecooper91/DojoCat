@@ -2,7 +2,7 @@
 
 namespace DojoCat.Members.Domain;
 
-public class Class
+public class Lesson
 {
     public Guid Id { get; set; }
     public TimeSpan Time { get; set; }

@@ -3,7 +3,7 @@
 public class Teacher
 {
     public Guid Id { get; set; }
-    public List<Class> Classes { get; set; } = new List<Class>();
+    public List<Lesson> Lessons { get; set; } = new List<Lesson>();
     public DateTimeOffset BecamTeacher { get; set; }
     public DateTimeOffset StoppedAsTeacher { get; set; }
     public DateTimeOffset Updated { get; set; }
