@@ -37,4 +37,3 @@ public enum ErrorType
     NotFound = 2,
     Conflict = 3
 }
-
