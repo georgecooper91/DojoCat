@@ -25,7 +25,6 @@ public class Parent
 
     public DateTimeOffset Updated { get; set; }
 
-    [Required]
     public long ContactDetailsId { get; set; }
 
     [ForeignKey(nameof(Id))]

@@ -45,7 +45,6 @@ public class Member
 
     public bool IsTeacher { get; set; }
 
-    [Required]
     public bool ActiveMember { get; set; }
 
     public bool DeleteMember { get; set; }
