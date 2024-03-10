@@ -1,0 +1,6 @@
+@DojoCat.Members.Api_HostAddress = http://localhost:5183
+
+GET {{DojoCat.Members.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
