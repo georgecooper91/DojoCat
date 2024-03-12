@@ -3,7 +3,7 @@
 
 A management software for Jiu-Jitsu academies that allows students / parents to keep up to date with all things related to the gym.
 
-Build following Microservices and Domain Driven Design priciples
+Built following Microservices and Domain Driven Design priciples
 
 ## Technology Used
 * C#
