@@ -9,6 +9,7 @@ public class NewMemberHandler : INewMemberHandler
 {
     public async Task<Result<MemberResponse>> Handle(NewMemberCommand command, CancellationToken cancellationToken)
     {
+        
         throw new NotImplementedException();
     }
 }

@@ -1,4 +1,5 @@
 using DojoCat.Members.Api.Configurations;
+using DojoCat.Members.Api.Middleware;
 using DojoCat.Members.Application.CommandHandlers;
 using DojoCat.Members.Application.Interfaces;
 
@@ -26,6 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCancellation();
 
 app.UseHttpsRedirection();
 
