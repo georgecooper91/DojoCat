@@ -2,13 +2,16 @@ using DojoCat.Members.Api.Configurations;
 using DojoCat.Members.Api.Middleware;
 using DojoCat.Members.Application.CommandHandlers;
 using DojoCat.Members.Application.Interfaces;
+using DojoCat.Members.Common.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers();
 
+builder.Services.AddTransient<DojoCatUserProvider>();
 builder.Services.AddTransient<INewMemberHandler, NewMemberHandler>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));

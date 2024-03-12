@@ -5,6 +5,7 @@ using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Common.DataContracts.Requests;
 using DojoCat.Members.Common.DataContracts.Responses;
 using DojoCat.Members.Common.Result;
+using DojoCat.Members.Common.User;
 using DojoCat.Members.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +18,17 @@ public class MembersController : ControllerBase
     private readonly IMapper _mapper;
     private readonly ILogger<MembersController> _logger;
     private readonly INewMemberHandler _newMemberHandler;
+    private readonly DojoCatUserProvider _dojoProvider;
+
 
     public MembersController(IMapper mapper,
         INewMemberHandler newMemberHandler,
+        DojoCatUserProvider dojoProvider,
         ILogger<MembersController> logger)
     {
         _mapper = mapper;
         _logger = logger;
+        _dojoProvider = dojoProvider;
         _newMemberHandler = newMemberHandler;
     }
 
@@ -32,7 +37,7 @@ public class MembersController : ControllerBase
     {
         _logger.LogTrace("Receieved request to create user with {username}", request.Username);
 
-        var command = new NewMemberCommand(_mapper.Map<Member>(request)/*, userDetails*/);
+        var command = new NewMemberCommand(_mapper.Map<Member>(request), _dojoProvider.User);
 
         Result<MemberResponse> result = await _newMemberHandler.Handle(command, cancellationToken);
         
