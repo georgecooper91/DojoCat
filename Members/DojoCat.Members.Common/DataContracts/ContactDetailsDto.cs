@@ -1,6 +1,6 @@
 ﻿namespace DojoCat.Members.Common.DataContracts;
 
-public class ContactDetails
+public class ContactDetailsDto
 {
     public string Email { get; set; }
     public long PhoneNumber { get; set; }

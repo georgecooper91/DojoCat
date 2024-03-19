@@ -7,7 +7,7 @@ public class MemberRequest
     public string Username { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string Grade { get; set; } = "white";
-    public Address Address { get; set; }
-    public ContactDetails ContactDetails { get; set; }
-    public EmergencyContact EmergencyContact { get; set; }
+    public AddressDto Address { get; set; }
+    public ContactDetailsDto ContactDetails { get; set; }
+    public EmergencyContactDto EmergencyContact { get; set; }
 }

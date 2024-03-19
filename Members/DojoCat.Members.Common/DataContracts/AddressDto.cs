@@ -1,6 +1,6 @@
 ﻿namespace DojoCat.Members.Common.DataContracts;
 
-public class Address
+public class AddressDto
 {
     public string AddressLine1 { get; set; }
     public string? AddressLine2 { get; set; }
