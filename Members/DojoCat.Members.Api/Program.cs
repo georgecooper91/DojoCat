@@ -3,6 +3,8 @@ using DojoCat.Members.Api.Middleware;
 using DojoCat.Members.Application.CommandHandlers;
 using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Common.User;
+using DojoCat.Members.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddTransient<DojoCatUserProvider>();
 builder.Services.AddTransient<INewMemberHandler, NewMemberHandler>();
+
+builder.Services.AddDbContext<MembersDbContext>(opt 
+    => opt.UseNpgsql(builder.Configuration.GetConnectionString("MembersDatabase")));
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

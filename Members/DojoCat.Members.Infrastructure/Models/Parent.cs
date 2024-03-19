@@ -27,9 +27,6 @@ public class Parent
 
     public long ContactDetailsId { get; set; }
 
-    [ForeignKey(nameof(Id))]
-    public ContactDetails ContactDetails { get; set; }
-
     public bool DeleteParent { get; set; } = false;
 
     [Required]
