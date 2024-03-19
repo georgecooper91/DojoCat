@@ -21,8 +21,5 @@ public class EmergencyContact
     [Required]
     public string LastName { get; set; }
 
-    public long ContactDetailsId { get; set; }
-
-    [ForeignKey(nameof(Id))]
-    public virtual ContactDetails ContactDetails { get; set; }
+    //public ContactDetails ContactDetails { get; set; }
 }

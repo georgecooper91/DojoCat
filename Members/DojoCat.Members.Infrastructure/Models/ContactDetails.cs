@@ -10,23 +10,28 @@ public class ContactDetails
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
 
-    public long MemberId { get; set; }
+    public long? MemberId { get; set; }
 
     [ForeignKey(nameof(Id))]
-    public virtual Member Member { get; set; }
+    public virtual Member? Member { get; set; }
 
     [Required]
     public string Email { get; set; }
 
-    public long PhoneNumber { get; set; }
+    public long? PhoneNumber { get; set; }
 
-    public long InternationalCallingCode { get; set; }
+    public long? InternationalCallingCode { get; set; }
 
     [Required]
     public string PreferedMethodOfContact { get; set; }
 
-    public long ParentId { get; set; }
+    // public long? ParentId { get; set; }
+
+    // [ForeignKey(nameof(Id))]
+    // public virtual Parent? Parent { get; set; }
+
+    public long? EmergencyContactId { get; set; }
 
     [ForeignKey(nameof(Id))]
-    public virtual Parent Parent { get; set; }
+    public virtual EmergencyContact? EmergencyContact { get; set; }
 }

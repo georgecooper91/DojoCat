@@ -3,6 +3,7 @@ using System;
 using DojoCat.Members.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DojoCat.Members.Infrastructure.Migrations
 {
     [DbContext(typeof(MembersDbContext))]
-    partial class MembersDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240319232430_AddDefaultFKeyValue")]
+    partial class AddDefaultFKeyValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,6 +74,9 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<long?>("MemberId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("PhoneNumber")
@@ -142,6 +148,9 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTimeOffset>("Updated")
                         .HasColumnType("timestamp with time zone");
 
@@ -154,7 +163,46 @@ namespace DojoCat.Members.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Parent", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<bool>("DeleteParent")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("Joined")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("ParentReference")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("Updated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Parent");
                 });
 
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Address", b =>
@@ -182,9 +230,17 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DojoCat.Members.Infrastructure.Models.Parent", "Parent")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("EmergencyContact");
 
                     b.Navigation("Member");
+
+                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.EmergencyContact", b =>
@@ -200,6 +256,13 @@ namespace DojoCat.Members.Infrastructure.Migrations
 
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Member", b =>
                 {
+                    b.HasOne("DojoCat.Members.Infrastructure.Models.Parent", null)
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Member", b =>
+                {
                     b.Navigation("Address")
                         .IsRequired();
 
@@ -208,6 +271,11 @@ namespace DojoCat.Members.Infrastructure.Migrations
 
                     b.Navigation("EmergencyContact")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Parent", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

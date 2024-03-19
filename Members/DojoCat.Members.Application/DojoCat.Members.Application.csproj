@@ -3,6 +3,8 @@
   <ItemGroup>
     <ProjectReference Include="..\DojoCat.Members.Domain\DojoCat.Members.Domain.csproj" />
     <ProjectReference Include="..\DojoCat.Members.Common\DojoCat.Members.Common.csproj" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <ProjectReference Include="..\DojoCat.Members.Infrastructure\DojoCat.Members.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

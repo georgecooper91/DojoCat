@@ -25,8 +25,6 @@ public class Parent
 
     public DateTimeOffset Updated { get; set; }
 
-    public long ContactDetailsId { get; set; }
-
     public bool DeleteParent { get; set; } = false;
 
     [Required]
