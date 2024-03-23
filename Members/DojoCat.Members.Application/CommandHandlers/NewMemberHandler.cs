@@ -41,7 +41,13 @@ public class NewMemberHandler : INewMemberHandler
         SetMemberDetails(command.Member);
 
         try {
-            await _newMemberExecutor.Execute(command.Member, cancellationToken);
+            var nSaved = await _newMemberExecutor.Execute(command.Member, cancellationToken);
+
+            if(nSaved < 1)
+            {
+                Result.Failure(_mapper.Map<MemberResponse>(command.Member), GeneralErrors.InternalError);
+            }
+
         } catch (Exception e)
         {
             _logger.LogError("Failed to add new member to database: {error}", e);
