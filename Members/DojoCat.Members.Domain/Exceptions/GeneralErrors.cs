@@ -5,5 +5,5 @@ namespace DojoCat.Members.Domain.Exceptions;
 public static class GeneralErrors
 {
     public static Error InternalError => 
-        Error.Failure("Internal.Error", "There system encountered a problem, please try again");
+        Error.Failure("Internal.Error", "The system encountered a problem, please try again");
 }

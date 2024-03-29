@@ -37,7 +37,7 @@ public class MembersController : ControllerBase
     {
         _logger.LogTrace("Receieved request to create user with {username}", request.Username);
 
-        var command = new NewMemberCommand(_mapper.Map<Member>(request), _dojoProvider.User);
+        var command = new NewMemberCommand(_mapper.Map<Member>(request));
         Result<MemberResponse> result = await _newMemberHandler.Handle(command, cancellationToken);
         
         return result.IsSuccess ? CreatedAtAction(nameof(RegisterMember), result.Value) 

@@ -13,13 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoCat.Members.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoCat.Members.Api", "DojoCat.Members.Api\DojoCat.Members.Api.csproj", "{7C5FCE2D-EF22-48D2-9BDA-72D9B7DF1024}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoCat.Members.Tests", "DojoCat.Members.Tests\DojoCat.Members.Tests.csproj", "{06F847B0-1C44-44AB-AFF3-EEC6BBA8AE05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{45BDF301-9385-44F5-B2F3-81CE58C9213C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +41,12 @@ Global
 		{7C5FCE2D-EF22-48D2-9BDA-72D9B7DF1024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C5FCE2D-EF22-48D2-9BDA-72D9B7DF1024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C5FCE2D-EF22-48D2-9BDA-72D9B7DF1024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F847B0-1C44-44AB-AFF3-EEC6BBA8AE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F847B0-1C44-44AB-AFF3-EEC6BBA8AE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F847B0-1C44-44AB-AFF3-EEC6BBA8AE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F847B0-1C44-44AB-AFF3-EEC6BBA8AE05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

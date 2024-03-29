@@ -5,12 +5,10 @@ namespace DojoCat.Members.Application.Commands;
 
 public class NewMemberCommand
 {
-    public NewMemberCommand(Member member, DojoCatUser user)
+    public NewMemberCommand(Member member)
     {
         Member = member;
     }
 
     public Member Member { get; }
-
-    public DojoCatUser User { get; }
 }

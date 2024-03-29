@@ -45,7 +45,7 @@ public class NewMemberHandler : INewMemberHandler
 
             if(nSaved < 1)
             {
-                Result.Failure(_mapper.Map<MemberResponse>(command.Member), GeneralErrors.InternalError);
+                return Result.Failure(_mapper.Map<MemberResponse>(command.Member), GeneralErrors.InternalError);
             }
 
         } catch (Exception e)
