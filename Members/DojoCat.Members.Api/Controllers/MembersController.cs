@@ -39,6 +39,7 @@ public class MembersController : ControllerBase
 
         var command = new NewMemberCommand(_mapper.Map<Member>(request));
         Result<MemberResponse> result = await _newMemberHandler.Handle(command, cancellationToken);
+        _logger.LogTrace("Successfully added new member with username {username}", result.Value.UserName);
         
         return result.IsSuccess ? CreatedAtAction(nameof(RegisterMember), result.Value) 
             : this.ReturnError(result);

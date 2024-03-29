@@ -35,6 +35,7 @@ public class NewMemberHandler : INewMemberHandler
     {
         if(await UsernameAlreadyTaken())
         {
+            _logger.LogTrace("Username {username} already in use", command.Member.Username);
             return Result.Failure(_mapper.Map<MemberResponse>(command.Member), UserErrors.UsernameAlreadyInUse);
         }
 
@@ -45,6 +46,7 @@ public class NewMemberHandler : INewMemberHandler
 
             if(nSaved < 1)
             {
+                _logger.LogWarning("New member not saved to db with username {}", command.Member.Username);
                 return Result.Failure(_mapper.Map<MemberResponse>(command.Member), GeneralErrors.InternalError);
             }
 
@@ -53,7 +55,8 @@ public class NewMemberHandler : INewMemberHandler
             _logger.LogError("Failed to add new member to database: {error}", e);
             return Result.Failure(_mapper.Map<MemberResponse>(command.Member), GeneralErrors.InternalError);
         }
-
+        
+        _logger.LogTrace("Successfully added new member to db with username {username}", command.Member.Username);
         return Result.Success(_mapper.Map<MemberResponse>(command.Member));
     }
 
