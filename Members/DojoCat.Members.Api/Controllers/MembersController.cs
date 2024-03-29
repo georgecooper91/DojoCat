@@ -50,7 +50,7 @@ public class MembersController : ControllerBase
     [HttpGet("getmemberdetails/{username}")]
     public async Task<IActionResult> GetMemberDetails([FromRoute] string username, CancellationToken cancellationToken)
     {
-        //_logger.LogTrace("Receieved request to get member details with username {username}", userName.Username);
+        _logger.LogTrace("Receieved request to get member details with username {username}", username);
 
         Result<MemberDetailsResponse> result = await _getMemberHandler.Handle(username, _dojoProvider, cancellationToken);
         
