@@ -12,7 +12,7 @@ public class ContactDetails
 
     public long? MemberId { get; set; }
 
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(MemberId))]
     public virtual Member Member { get; set; }
 
     [Required]
@@ -32,6 +32,6 @@ public class ContactDetails
 
     public long? EmergencyContactId { get; set; }
 
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(EmergencyContactId))]
     public virtual EmergencyContact EmergencyContact { get; set; }
 }

@@ -9,5 +9,5 @@ public class MemberRequest
     public string Grade { get; set; } = "white";
     public AddressDto Address { get; set; }
     public ContactDetailsDto ContactDetails { get; set; }
-    public EmergencyContactDto EmergencyContact { get; set; }
+    public List<EmergencyContactDto> EmergencyContact { get; set; }
 }

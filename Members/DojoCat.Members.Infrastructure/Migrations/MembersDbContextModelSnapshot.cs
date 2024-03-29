@@ -28,6 +28,8 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
                     b.Property<string>("AddressLine1")
                         .IsRequired()
                         .HasColumnType("text");
@@ -51,6 +53,9 @@ namespace DojoCat.Members.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MemberId")
+                        .IsUnique();
+
                     b.ToTable("Address");
                 });
 
@@ -59,6 +64,8 @@ namespace DojoCat.Members.Infrastructure.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -82,6 +89,11 @@ namespace DojoCat.Members.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmergencyContactId");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique();
+
                     b.ToTable("ContactDetails");
                 });
 
@@ -91,6 +103,8 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -99,10 +113,12 @@ namespace DojoCat.Members.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("MemberId")
+                    b.Property<long?>("MemberId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("EmergencyContact");
                 });
@@ -161,7 +177,7 @@ namespace DojoCat.Members.Infrastructure.Migrations
                 {
                     b.HasOne("DojoCat.Members.Infrastructure.Models.Member", "Member")
                         .WithOne("Address")
-                        .HasForeignKey("DojoCat.Members.Infrastructure.Models.Address", "Id")
+                        .HasForeignKey("DojoCat.Members.Infrastructure.Models.Address", "MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -171,16 +187,12 @@ namespace DojoCat.Members.Infrastructure.Migrations
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.ContactDetails", b =>
                 {
                     b.HasOne("DojoCat.Members.Infrastructure.Models.EmergencyContact", "EmergencyContact")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ContactDetails")
+                        .HasForeignKey("EmergencyContactId");
 
                     b.HasOne("DojoCat.Members.Infrastructure.Models.Member", "Member")
                         .WithOne("ContactDetails")
-                        .HasForeignKey("DojoCat.Members.Infrastructure.Models.ContactDetails", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DojoCat.Members.Infrastructure.Models.ContactDetails", "MemberId");
 
                     b.Navigation("EmergencyContact");
 
@@ -190,12 +202,15 @@ namespace DojoCat.Members.Infrastructure.Migrations
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.EmergencyContact", b =>
                 {
                     b.HasOne("DojoCat.Members.Infrastructure.Models.Member", "Member")
-                        .WithOne("EmergencyContact")
-                        .HasForeignKey("DojoCat.Members.Infrastructure.Models.EmergencyContact", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("EmergencyContact")
+                        .HasForeignKey("MemberId");
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.EmergencyContact", b =>
+                {
+                    b.Navigation("ContactDetails");
                 });
 
             modelBuilder.Entity("DojoCat.Members.Infrastructure.Models.Member", b =>
@@ -206,8 +221,7 @@ namespace DojoCat.Members.Infrastructure.Migrations
                     b.Navigation("ContactDetails")
                         .IsRequired();
 
-                    b.Navigation("EmergencyContact")
-                        .IsRequired();
+                    b.Navigation("EmergencyContact");
                 });
 #pragma warning restore 612, 618
         }

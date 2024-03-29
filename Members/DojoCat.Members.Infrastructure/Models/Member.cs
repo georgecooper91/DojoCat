@@ -35,7 +35,7 @@ public class Member
     public ContactDetails ContactDetails { get; set; }
 
     [Required]
-    public EmergencyContact EmergencyContact { get; set; }
+    public ICollection<EmergencyContact> EmergencyContact { get; set; }
 
     [Required]
     public DateTimeOffset Joined { get; set; }

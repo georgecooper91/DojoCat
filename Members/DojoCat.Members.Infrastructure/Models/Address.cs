@@ -13,7 +13,7 @@ public class Address
     [Required]
     public long MemberId { get; set; }
 
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(MemberId))]
     public virtual Member Member { get; set; }
 
     [Required]

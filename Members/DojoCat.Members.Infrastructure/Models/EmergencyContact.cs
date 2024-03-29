@@ -10,9 +10,9 @@ public class EmergencyContact
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
 
-    public long MemberId { get; set; }
+    public long? MemberId { get; set; }
 
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(MemberId))]
     public virtual Member Member { get; set; }
 
     [Required]
@@ -21,5 +21,5 @@ public class EmergencyContact
     [Required]
     public string LastName { get; set; }
 
-    //public ContactDetails ContactDetails { get; set; }
-}
+    public ContactDetails ContactDetails { get; set; }
+} 
