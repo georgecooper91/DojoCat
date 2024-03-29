@@ -23,5 +23,7 @@ public class MapperConfig : Profile
         CreateMap<Address, Infrastructure.Models.Address>();
         CreateMap<ContactDetails, Infrastructure.Models.ContactDetails>();
         CreateMap<EmergencyContact, Infrastructure.Models.EmergencyContact>();
+        CreateMap<Infrastructure.Models.Member, MemberDetailsResponse>();
+        CreateMap<Infrastructure.Models.ContactDetails, ContactDetailsDto>();
     }
 }

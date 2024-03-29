@@ -2,12 +2,14 @@ using DojoCat.Members.Api.Configurations;
 using DojoCat.Members.Api.Middleware;
 using DojoCat.Members.Application.CommandHandlers;
 using DojoCat.Members.Application.Interfaces;
+using DojoCat.Members.Application.QueryHandlers;
 using DojoCat.Members.Common.User;
 using DojoCat.Members.Domain.Interfaces;
 using DojoCat.Members.Domain.Utilities;
 using DojoCat.Members.Infrastructure.Database;
 using DojoCat.Members.Infrastructure.Executors;
 using DojoCat.Members.Infrastructure.Interfaces;
+using DojoCat.Members.Infrastructure.Queries;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,8 @@ builder.Services.AddTransient<DojoCatUserProvider>();
 builder.Services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 builder.Services.AddTransient<INewMemberHandler, NewMemberHandler>();
 builder.Services.AddTransient<INewMemberExecutor, NewMemberExecutor>();
+builder.Services.AddTransient<IGetMemberHandler, GetMemberHandler>();
+builder.Services.AddTransient<IGetMemberExecutor, GetMemberExecutor>();
 
 builder.Services.AddDbContext<MembersDbContext>(opt 
     => opt.UseNpgsql(builder.Configuration.GetConnectionString("MembersDatabase")));
