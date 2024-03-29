@@ -22,8 +22,10 @@ public class GetMemberExecutor : IGetMemberExecutor
 
     public async Task<Member> Execute(string username, CancellationToken cancellationToken)
     {
-        //return await _database.Members.FirstOrDefaultAsync(m => m.Username == username, cancellationToken);
         return await _database.Members.Include(m => m.ContactDetails)
+            .Include(m => m.Address)
+            .Include(m => m.EmergencyContact)
+                .ThenInclude(ec => ec.ContactDetails)
             .FirstOrDefaultAsync(m => m.Username == username, cancellationToken);
     }
 }

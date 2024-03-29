@@ -8,6 +8,8 @@ public class MemberDetailsResponse
     public DateTime DateOfBirth { get; set; }
     public string Grade { get; set; } = "white";
     public ContactDetailsDto ContactDetails { get; set; }
+    public AddressDto Address { get; set; }
+    public List<EmergencyContactDto> EmergencyContacts{ get; set; }
     public DateTimeOffset Joined { get; set; }
     public bool IsTeacher { get; set; }
     public bool ActiveMember { get; set; }
