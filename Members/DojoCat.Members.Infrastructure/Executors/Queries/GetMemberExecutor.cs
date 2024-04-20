@@ -5,7 +5,7 @@ using DojoCat.Members.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace DojoCat.Members.Infrastructure.Queries;
+namespace DojoCat.Members.Infrastructure.Executors.Queries;
 
 public class GetMemberExecutor : IGetMemberExecutor
 {

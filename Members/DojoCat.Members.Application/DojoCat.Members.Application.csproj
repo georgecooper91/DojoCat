@@ -1,10 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.2.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.0" />
     <ProjectReference Include="..\DojoCat.Members.Domain\DojoCat.Members.Domain.csproj" />
     <ProjectReference Include="..\DojoCat.Members.Common\DojoCat.Members.Common.csproj" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <ProjectReference Include="..\DojoCat.Members.Infrastructure\DojoCat.Members.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators/" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace DojoCat.Members.Infrastructure.Models;
 
+[Index(nameof(Username), IsUnique = true)]
 public class Parent
 {
     [Key]
@@ -21,13 +23,16 @@ public class Parent
 
     [Required]
     public string Username { get; set; }
+
     public DateTimeOffset Joined { get; set; }
 
+    //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTimeOffset Updated { get; set; }
 
     public bool DeleteParent { get; set; } = false;
 
     [Required]
-    public List<Member> Children { get; set; } = new List<Member>();
+    public List<MemberParent> MemberParent { get; set; }
 
+    public bool Verified { get; set; }
 }

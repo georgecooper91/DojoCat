@@ -2,7 +2,8 @@
 
 public class Parent
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; } 
+    public Guid ParentReference { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Username { get; set; }
@@ -11,4 +12,6 @@ public class Parent
     public ContactDetails ContactDetails { get; set; }
     public bool DeleteParent { get; set; } = false;
     public List<Member> Children { get; set; } = new List<Member>();
+    public bool Verified { get; set; } = false;
+
 }
