@@ -23,6 +23,7 @@ public static class ControllerBaseExtension
             ErrorType.Validation => "Bad Request",
             ErrorType.NotFound => "Not Found",
             ErrorType.Conflict => "Conflict",
+            ErrorType.PartialSuccess => "Partial Success",
             _ => "Internal Server Error"
         };
 
@@ -32,6 +33,7 @@ public static class ControllerBaseExtension
             ErrorType.Validation => StatusCodes.Status400BadRequest,
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Conflict => StatusCodes.Status409Conflict,
+            ErrorType.PartialSuccess => StatusCodes.Status207MultiStatus,
             _ => StatusCodes.Status500InternalServerError
         };
 }
