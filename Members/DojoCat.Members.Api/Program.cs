@@ -15,7 +15,6 @@ using DojoCat.Members.Infrastructure.Executors.Queries;
 using DojoCat.Members.Infrastructure.Interfaces;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,7 +79,7 @@ builder.Services.AddMassTransit(rabbitConfig =>
         });
 });
 
-builder.Services.AddScoped<IMessageSender<IBusMessage>, MessageSender<IBusMessage>>();
+builder.Services.AddScoped<IMessageSender<VerifyParent>, MessageSender<VerifyParent>>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
