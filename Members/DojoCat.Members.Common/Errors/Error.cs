@@ -16,6 +16,9 @@ public record Error
     public string Description { get; }
     public ErrorType ErrorType { get; }
 
+    public static Error PartialSuccess(string code, string description) =>
+        new(code, description, ErrorType.PartialSuccess);
+
     public static Error Failure(string code, string description) =>
         new(code, description, ErrorType.Failure);
         
@@ -35,5 +38,6 @@ public enum ErrorType
     Failure = 0,
     Validation = 1,
     NotFound = 2,
-    Conflict = 3
+    Conflict = 3,
+    PartialSuccess = 4
 }

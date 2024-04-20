@@ -71,6 +71,6 @@ public class NewMemberHandler : INewMemberHandler
         var now = _dateTimeProvider.UtcNow;
         member.Joined = now;
         member.Updated = now;
-        member.Id = Guid.NewGuid();
+        member.UserReference = Guid.NewGuid();
     }
 }

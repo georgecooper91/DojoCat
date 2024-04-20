@@ -25,13 +25,13 @@ public class ContactDetails
     [Required]
     public string PreferedMethodOfContact { get; set; }
 
-    // public long? ParentId { get; set; }
-
-    // [ForeignKey(nameof(Id))]
-    // public virtual Parent? Parent { get; set; }
-
     public long? EmergencyContactId { get; set; }
 
     [ForeignKey(nameof(EmergencyContactId))]
     public virtual EmergencyContact EmergencyContact { get; set; }
+
+    public long? ParentId { get; set; }
+
+    [ForeignKey(nameof(ParentId))]
+    public virtual Parent? Parent { get; set; }
 }

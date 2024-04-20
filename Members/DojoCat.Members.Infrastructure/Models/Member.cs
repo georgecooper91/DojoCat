@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace DojoCat.Members.Infrastructure.Models;
 
+[Index(nameof(Username), IsUnique = true)]
 public class Member
 {
     [Key]
@@ -48,4 +50,6 @@ public class Member
     public bool ActiveMember { get; set; }
 
     public bool DeleteMember { get; set; }
+
+    public List<MemberParent>? MemberParent { get; set; }
 }
