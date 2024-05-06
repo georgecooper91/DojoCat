@@ -4,6 +4,10 @@
     <ProjectReference Include="..\DojoCat.Members.Common\DojoCat.Members.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Messaging/" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

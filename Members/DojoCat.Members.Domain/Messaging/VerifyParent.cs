@@ -1,5 +1,4 @@
-﻿namespace DojoCat.Members.Common.DataContracts.Messaging;
-
+﻿namespace DojoCat.Messaging.DataContracts;
 public class VerifyParent : IBusMessage
 {
     public string RoutingKey { get; } = "dojocat.members.validateparent";

@@ -1,5 +1,4 @@
-﻿using DojoCat.Members.Common.DataContracts.Messaging;
-//using DoJoCat.Messaging.Domain;
+﻿using DojoCat.Messaging.DataContracts;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 

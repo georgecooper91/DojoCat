@@ -2,12 +2,12 @@
 using DojoCat.Members.Application.Commands;
 using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Application.Interfacess;
-using DojoCat.Members.Common.DataContracts.Messaging;
 using DojoCat.Members.Common.DataContracts.Responses;
 using DojoCat.Members.Common.Result;
 using DojoCat.Members.Domain.Exceptions;
 using DojoCat.Members.Infrastructure.Executors;
 using DojoCat.Members.Infrastructure.Interfaces;
+using DojoCat.Messaging.DataContracts;
 using Microsoft.Extensions.Logging;
 
 namespace DojoCat.Members.Application.CommandHandlers;

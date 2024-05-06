@@ -6,7 +6,6 @@ using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Application.Interfacess;
 using DojoCat.Members.Application.QueryHandlers;
 using DojoCat.Members.Application.Services;
-using DojoCat.Members.Common.DataContracts.Messaging;
 using DojoCat.Members.Common.User;
 using DojoCat.Members.Domain.Interfaces;
 using DojoCat.Members.Domain.Utilities;
@@ -14,6 +13,7 @@ using DojoCat.Members.Infrastructure.Database;
 using DojoCat.Members.Infrastructure.Executors;
 using DojoCat.Members.Infrastructure.Executors.Queries;
 using DojoCat.Members.Infrastructure.Interfaces;
+using DojoCat.Messaging.DataContracts;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
