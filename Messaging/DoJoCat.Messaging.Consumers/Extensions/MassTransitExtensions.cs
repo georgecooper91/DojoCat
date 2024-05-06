@@ -11,7 +11,7 @@ public static class MassTransitExtensions
         config.ReceiveEndpoint("receive-validate-parent-request", x => 
         {
             x.ConfigureConsumeTopology = false;
-            x.Consumer<VerifyParentConsumer>();
+            x.Consumer<VerifyParentConsumer>(context);
             x.Bind("dojocat-members", s => 
             {
                 s.RoutingKey = RoutingKeys.ValidateParent;

@@ -8,14 +8,14 @@ public class VerifyParentConsumer : IConsumer<VerifyParent>
 {
     private readonly ILogger<VerifyParentConsumer> _logger;
 
-    public VerifyParentConsumer(/*ILogger<VerifyParentConsumer> logger*/)
+    public VerifyParentConsumer(ILogger<VerifyParentConsumer> logger)
     {
-        //_logger = logger;
+        _logger = logger;
     }
 
     public Task Consume(ConsumeContext<VerifyParent> context)
     {
-        //_logger.LogInformation("Verify parent message received for user {member}", context.Message.MemberName);
+        _logger.LogInformation("Verify parent message received for user {member}", context.Message.MemberName);
         return Task.CompletedTask;
     }
 }
