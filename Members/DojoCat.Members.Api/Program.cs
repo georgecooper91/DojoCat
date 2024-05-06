@@ -51,7 +51,7 @@ builder.Services.AddMassTransit(rabbitConfig =>
                 creds.Password(builder.Configuration.GetValue<string>("RabbitMq:Password"));
             });
 
-        config.ConfigureMessageTopology(context);
+        config.ConfigureMessageTopology();
     });
 });
 

@@ -6,7 +6,7 @@ namespace DojoCat.Members.Api.Extensions;
 
 public static class MassTransitExtensions
 {
-    public static void ConfigureMessageTopology(this IRabbitMqBusFactoryConfigurator config, IBusRegistrationContext context)
+    public static void ConfigureMessageTopology(this IRabbitMqBusFactoryConfigurator config)
     {
         config.Send<IBusMessage>(m =>
         {
