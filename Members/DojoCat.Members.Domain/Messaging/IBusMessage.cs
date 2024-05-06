@@ -1,4 +1,4 @@
-﻿namespace DojoCat.Members.Common.DataContracts.Messaging;
+﻿namespace DojoCat.Messaging.DataContracts;
 
 public interface IBusMessage
 {

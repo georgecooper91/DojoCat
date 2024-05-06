@@ -1,5 +1,5 @@
 ﻿using DojoCat.Members.Application.Interfacess;
-using DojoCat.Members.Common.DataContracts.Messaging;
+using DojoCat.Messaging.DataContracts;
 using MassTransit;
 
 namespace DojoCat.Members.Application.Services;

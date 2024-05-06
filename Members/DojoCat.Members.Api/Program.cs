@@ -1,11 +1,11 @@
 using DojoCat.Members.Api.Configurations;
+using DojoCat.Members.Api.Extensions;
 using DojoCat.Members.Api.Middleware;
 using DojoCat.Members.Application.CommandHandlers;
 using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Application.Interfacess;
 using DojoCat.Members.Application.QueryHandlers;
 using DojoCat.Members.Application.Services;
-using DojoCat.Members.Common.DataContracts.Messaging;
 using DojoCat.Members.Common.User;
 using DojoCat.Members.Domain.Interfaces;
 using DojoCat.Members.Domain.Utilities;
@@ -13,6 +13,7 @@ using DojoCat.Members.Infrastructure.Database;
 using DojoCat.Members.Infrastructure.Executors;
 using DojoCat.Members.Infrastructure.Executors.Queries;
 using DojoCat.Members.Infrastructure.Interfaces;
+using DojoCat.Messaging.DataContracts;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,40 +44,15 @@ builder.Services.AddMassTransit(rabbitConfig =>
 {
     rabbitConfig.SetKebabCaseEndpointNameFormatter();
     rabbitConfig.UsingRabbitMq((context, config) => 
-        {
-            config.Host(builder.Configuration.GetValue<string>("RabbitMq:Host"), "/", creds => 
-                {
-                    creds.Username("guest");
-                    creds.Password("guest");
-                });
-            // config.ReceiveEndpoint("verify-parent-n", e =>
-            // {
-            //     e.Bind<VerifyParent>(ex => {
-            //         ex.Durable = false;
-            //         ex.AutoDelete = true;
-            //         ex.ExchangeType = ExchangeType.Direct;
-            //         ex.RoutingKey = "dojocat.members.validateparent";
-            //     });
-                // e.Bind("dojocat-members", x =>
-                // {
-                //     x.Durable = false;
-                //     x.AutoDelete = true;
-                //     x.ExchangeType = ExchangeType.Topic;
-                //     x.RoutingKey = "dojocat.members.validateparent";
-                // });
-           // });
-            // config.Send<IBusMessage>(m =>
-            // {
-            //     m.UseRoutingKeyFormatter(x => x.Message.RoutingKey);
-            // });
-             config.Message<VerifyParent>(x => x.SetEntityName("dojocat-members"));
-            // config.Publish<VerifyParent>(x => {
-            //     x.ExchangeType = ExchangeType.Topic;
-            //     // x.BindQueue("DojoCat.Members.Common.DataContracts.Messaging:IBusMessage", "verify-parent-new", x => {
-            //     //     x.RoutingKey = "dojocat.members.validateparent";
-            //     // });
-            //     });
-        });
+    {
+        config.Host(builder.Configuration.GetValue<string>("RabbitMq:Host"), "/", creds => 
+            {
+                creds.Username(builder.Configuration.GetValue<string>("RabbitMq:Username"));
+                creds.Password(builder.Configuration.GetValue<string>("RabbitMq:Password"));
+            });
+
+        config.ConfigureMessageTopology();
+    });
 });
 
 builder.Services.AddScoped<IMessageSender<VerifyParent>, MessageSender<VerifyParent>>();

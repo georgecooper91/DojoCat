@@ -1,4 +1,4 @@
-﻿using DojoCat.Members.Common.DataContracts.Messaging;
+﻿using DojoCat.Messaging.DataContracts;
 
 namespace DojoCat.Members.Application.Interfacess;
 

@@ -2,12 +2,12 @@
 using DojoCat.Members.Application.Commands;
 using DojoCat.Members.Application.Interfaces;
 using DojoCat.Members.Application.Interfacess;
-using DojoCat.Members.Common.DataContracts.Messaging;
 using DojoCat.Members.Common.DataContracts.Responses;
 using DojoCat.Members.Common.Result;
 using DojoCat.Members.Domain.Exceptions;
 using DojoCat.Members.Infrastructure.Executors;
 using DojoCat.Members.Infrastructure.Interfaces;
+using DojoCat.Messaging.DataContracts;
 using Microsoft.Extensions.Logging;
 
 namespace DojoCat.Members.Application.CommandHandlers;
@@ -55,8 +55,10 @@ public class NewParentHandler : INewParentHandler
                     Email = children[0].ContactDetails.Email,
                     PhoneNumber = children[0].ContactDetails.PhoneNumber,
                     InternationalCallingCode = children[0].ContactDetails.InternationalCallingCode,
-                    PreferedMethodOfContact = children[0].ContactDetails.PreferedMethodOfContact
+                    PreferedMethodOfContact = children[0].ContactDetails.PreferedMethodOfContact,
+                    ParentName = command.Parent.FirstName + " " + command.Parent.LastName,
                 };
+
                 _messageSender.SendMessage(message, cancellationToken);
             }
 
