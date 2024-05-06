@@ -55,8 +55,10 @@ public class NewParentHandler : INewParentHandler
                     Email = children[0].ContactDetails.Email,
                     PhoneNumber = children[0].ContactDetails.PhoneNumber,
                     InternationalCallingCode = children[0].ContactDetails.InternationalCallingCode,
-                    PreferedMethodOfContact = children[0].ContactDetails.PreferedMethodOfContact
+                    PreferedMethodOfContact = children[0].ContactDetails.PreferedMethodOfContact,
+                    ParentName = command.Parent.FirstName + " " + command.Parent.LastName,
                 };
+
                 _messageSender.SendMessage(message, cancellationToken);
             }
 
